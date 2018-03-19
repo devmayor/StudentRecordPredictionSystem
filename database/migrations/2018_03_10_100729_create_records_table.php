@@ -18,12 +18,12 @@ class CreateRecordsTable extends Migration
             $table->integer('user_id');
             $table->string('matric_id');
             $table->string('course_id');
-            $table->integer('ca');
+            $table->decimal('ca');
             $table->integer('attendance');
             $table->integer('assignment');
-            $table->integer('exam');
-            $table->integer('exam_60');
-            $table->integer('total');
+            $table->decimal('exam');
+            $table->decimal('exam_60');
+            $table->decimal('total');
             $table->timestamps();
         });
     }
