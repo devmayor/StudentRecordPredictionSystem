@@ -24,6 +24,12 @@ class RecordController extends Controller
 
         return view('records.course',['courses'=>$students]);
     }
+    public function deleteCourse($id){
+        course::where('id',$id)->first()->record()->delete();
+        course::where('id',$id)->delete();
+
+        return redirect()->back()->with('status','Course Deleted');
+    }
     public function store(Request $request){
 //        $this->validate($request , ['code'=>'required|max:10',
 //            'name'=>'required|max:50']);
@@ -42,10 +48,11 @@ class RecordController extends Controller
                 $record->course_id = $course;
                 $record->ca = $request->{'ca_'.$student->id};
                 $record->attendance = $request->{'att_'.$student->id};
-                $record->assignment = $request->{'ass_'.$student->id};
+//                $record->assignment = $request->{'ass_'.$student->id};
+                $record->assignment = 0;
                 $record->exam = $request->{'exam_'.$student->id};
                 $record->exam_60 = $request->{'exam_'.$student->id} * 0.6;
-                $record->total = $record->exam_60 + $record->ca;
+                $record->total = $record->exam_60 + $record->ca + $record->attendance;
                 $record->save();
 
         }
@@ -83,7 +90,7 @@ class RecordController extends Controller
             $samples[] = [
                 $record->ca,
                 $record->attendance,
-                $record->assignment,
+//                $record->assignment,
 
 
             ];
@@ -95,10 +102,16 @@ class RecordController extends Controller
         $classifier = new KNearestNeighbors(3);
         $classifier->train($samples, $labels);
 
-        $predict = $classifier->predict([$request->ca,$request->att , $request->ass]);
+//        $predict = $classifier->predict([$request->ca,$request->att , $request->ass]);
+        $predict = $classifier->predict([$request->ca,$request->att ]);
 
 
 
         return view('records.predict',['predict'=>$predict]);
+    }
+    public function delete($id){
+        records::where('matric_id',$id)->delete();
+
+        return redirect()->back()->with('status','Records Deleted');
     }
 }

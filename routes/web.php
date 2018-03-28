@@ -40,6 +40,10 @@ Route::group(['middleware'=>'auth'],function(){
 
     Route::get('/records', 'RecordController@records')->name('records');
 
+    Route::get('/records/delete/{id}', 'RecordController@delete')->name('deleteRecord');
+
+    Route::get('/records/course/{id}', 'RecordController@deleteCourse')->name('deleteCourse');
+
     Route::post('/predict/{student}', 'RecordController@predict')->name('predict');
 });
 

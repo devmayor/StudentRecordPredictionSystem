@@ -26,7 +26,12 @@
                         		<tr>
                         			<td>{{$course->name}} ({{$course->code}})</td>
                         			<td>
-                                        <a href="{{route('fillRecords',['course'=>$course->id])}}"><button type="button" class="btn btn-primary">View</button></a></td>
+                                        <a href="{{route('fillRecords',['course'=>$course->id])}}"><button type="button" class="btn btn-primary">View</button></a>
+                                        <a href="{{route('deleteCourse',['id'=>$course->id])}}"><button type="button" class="btn btn-danger" >
+                                                Delete Course
+                                            </button></a>
+                                    </td>
+
                         		</tr>
                             @endforeach
                         	</tbody>

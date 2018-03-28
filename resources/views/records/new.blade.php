@@ -20,9 +20,9 @@
                             	<thead>
                             		<tr>
                             			<th>NAME</th>
-                            			<th>CA(40)</th>
+                            			<th>CA(30)</th>
                             			<th>ATTENDANCE(10)</th>
-                            			<th>ASSIGNMENT(20)</th>
+                            			{{--<th>ASSIGNMENT(20)</th>--}}
                             			<th>EXAM(100)</th>
                             		</tr>
                             	</thead>
@@ -31,9 +31,9 @@
 
                             		<tr>
                             			<td>{{$student->name}} ({{$student->matric_No}})</td>
-                            			<td><input type="number" max="40" name="ca_{{$student->id}}" value="{{isset($student->record()->where('course_id',$course->id)->first()->ca)?$student->record()->where('course_id',$course->id)->first()->ca:''}}" class="form-control" required="required" ></td>
+                            			<td><input type="number" max="30" name="ca_{{$student->id}}" value="{{isset($student->record()->where('course_id',$course->id)->first()->ca)?$student->record()->where('course_id',$course->id)->first()->ca:''}}" class="form-control" required="required" ></td>
                             			<td><input type="number" max="10" name="att_{{$student->id}}" value="{{isset($student->record()->where('course_id',$course->id)->first()->attendance)?$student->record()->where('course_id',$course->id)->first()->attendance:''}}" class="form-control" required="required" ></td>
-                            			<td><input type="number" max="20" name="ass_{{$student->id}}" value="{{isset($student->record()->where('course_id',$course->id)->first()->assignment)?$student->record()->where('course_id',$course->id)->first()->assignment:''}}" class="form-control" required="required" ></td>
+                            			{{--<td><input type="number" max="20" name="ass_{{$student->id}}" value="{{isset($student->record()->where('course_id',$course->id)->first()->assignment)?$student->record()->where('course_id',$course->id)->first()->assignment:''}}" class="form-control" required="required" ></td>--}}
                             			<td><input type="number" max="100" name="exam_{{$student->id}}" value="{{isset($student->record()->where('course_id',$course->id)->first()->exam)?$student->record()->where('course_id',$course->id)->first()->exam:''}}" class="form-control" required="required" ></td>
                             		</tr>
                                 @endforeach
