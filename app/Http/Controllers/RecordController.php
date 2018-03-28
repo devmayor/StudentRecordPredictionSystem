@@ -114,4 +114,10 @@ class RecordController extends Controller
 
         return redirect()->back()->with('status','Records Deleted');
     }
+    public function changeName(Request $request, $student){
+        $student = student::where('id',$student)->first();
+        $student->name = $request->name;
+        $student->save();
+        return redirect()->back()->with('status','Name Changed');
+    }
 }

@@ -45,5 +45,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/records/course/{id}', 'RecordController@deleteCourse')->name('deleteCourse');
 
     Route::post('/predict/{student}', 'RecordController@predict')->name('predict');
+
+    Route::post('/changeName/{student}', 'RecordController@changeName')->name('changeName');
 });
 

@@ -34,6 +34,9 @@
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal{{$student->id}}">
                                             Predict
                                         </button>
+                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2{{$student->id}}">
+                                            Change Name
+                                        </button>
                                         <a href="{{route('deleteRecord',['id'=>$student->id])}}"><button type="button" class="btn btn-danger" >
                                             Delete All
                                         </button></a>
@@ -87,6 +90,34 @@
             </div>
         </div>
     </div>
-@endforeach
+
+
+    <div class="modal fade" id="myModal2{{$student->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="{{route('changeName',['student'=>$student->id])}}" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Change Student Name</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="">New Name</label>
+                            <input type="text" required="required" class="form-control" placeholder="" name="name">
+                        </div>
+
+                        {{csrf_field()}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @endforeach
 
 @endsection
